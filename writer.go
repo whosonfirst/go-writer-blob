@@ -5,7 +5,6 @@ import (
 	wof_writer "github.com/whosonfirst/go-writer"
 	"gocloud.dev/blob"
 	"io"
-	"net/url"
 )
 
 func init() {
@@ -21,7 +20,6 @@ type BlobWriterOptionsKey string
 
 type BlobWriter struct {
 	wof_writer.Writer
-	scheme string
 	bucket *blob.Bucket
 }
 
@@ -39,12 +37,7 @@ func (wr *BlobWriter) Open(ctx context.Context, uri string) error {
 		return err
 	}
 
-	u, _ := url.Parse(uri)
-
-	scheme := u.Scheme
-
 	wr.bucket = bucket
-	wr.scheme = scheme
 	return nil
 }
 
