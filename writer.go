@@ -2,7 +2,6 @@ package writer
 
 import (
 	"context"
-	"github.com/aaronland/gocloud-blob-bucket"
 	wof_writer "github.com/whosonfirst/go-writer"
 	"gocloud.dev/blob"
 	"io"
@@ -41,13 +40,13 @@ func (wr *BlobWriter) Open(ctx context.Context, uri string) error {
 
 	blob_uri := u.String()
 
-	blob_bucket, err := bucket.OpenBucket(ctx, blob_uri)
+	bucket, err := blob.OpenBucket(ctx, blob_uri)
 
 	if err != nil {
 		return err
 	}
 
-	wr.bucket = blob_bucket
+	wr.bucket = bucket
 	wr.scheme = scheme
 	return nil
 }

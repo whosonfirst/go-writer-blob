@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/whosonfirst/go-writer"
 	_ "github.com/whosonfirst/go-writer-blob"
+	_ "gocloud.dev/blob/fileblob"
 	"os"
 	"path/filepath"
 	"testing"
