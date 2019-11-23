@@ -35,7 +35,7 @@ func TestFileWriter(t *testing.T) {
 		}
 	}
 
-	target_root := fmt.Sprintf("blob://file%s", data_root)
+	target_root := fmt.Sprintf("file://%s", data_root)
 
 	source_root := filepath.Join(cwd, "fixtures")
 	feature_path := filepath.Join(source_root, "101736545.geojson")

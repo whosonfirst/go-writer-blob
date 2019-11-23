@@ -9,8 +9,12 @@ import (
 )
 
 func init() {
-	r := NewBlobWriter()
-	wof_writer.Register("blob", r)
+
+	wr := NewBlobWriter()
+
+	for _, scheme := range blob.DefaultURLMux().BucketSchemes() {
+		wof_writer.Register(scheme, wr)
+	}
 }
 
 type BlobWriter struct {
@@ -27,24 +31,15 @@ func NewBlobWriter() wof_writer.Writer {
 
 func (wr *BlobWriter) Open(ctx context.Context, uri string) error {
 
-	u, err := url.Parse(uri)
+	bucket, err := blob.OpenBucket(ctx, uri)
 
 	if err != nil {
 		return err
 	}
 
-	scheme := u.Host
+	u, _ := url.Parse(uri)
 
-	u.Scheme = scheme
-	u.Host = ""
-
-	blob_uri := u.String()
-
-	bucket, err := blob.OpenBucket(ctx, blob_uri)
-
-	if err != nil {
-		return err
-	}
+	scheme := u.Scheme
 
 	wr.bucket = bucket
 	wr.scheme = scheme
