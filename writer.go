@@ -57,30 +57,6 @@ func (wr *BlobWriter) Write(ctx context.Context, uri string, fh io.ReadCloser) e
 	if v != nil {
 		wr_opts = v.(*blob.WriterOptions)
 	}
-	
-	/*
-
-		if wr.scheme == "s3" && wr.acl != "" {
-
-			before := func(asFunc func(interface{}) bool) error {
-
-				req := &s3manager.UploadInput{}
-				ok := asFunc(&req)
-
-				if !ok {
-					return errors.New("invalid s3 type")
-				}
-
-				req.ACL = aws.String(bc.acl)
-				return nil
-			}
-
-			wr_opts = &blob.WriterOptions{
-				BeforeWrite: before,
-			}
-		}
-
-	*/
 
 	wr_fh, err := wr.bucket.NewWriter(ctx, uri, wr_opts)
 
