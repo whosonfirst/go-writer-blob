@@ -17,6 +17,8 @@ func init() {
 	}
 }
 
+type BlobWriterOptionsKey string
+
 type BlobWriter struct {
 	wof_writer.Writer
 	scheme string
@@ -50,6 +52,12 @@ func (wr *BlobWriter) Write(ctx context.Context, uri string, fh io.ReadCloser) e
 
 	var wr_opts *blob.WriterOptions
 
+	v := ctx.Value(BlobWriterOptionsKey("options"))
+
+	if v != nil {
+		wr_opts = v.(*blob.WriterOptions)
+	}
+	
 	/*
 
 		if wr.scheme == "s3" && wr.acl != "" {
