@@ -103,6 +103,8 @@ github.com/whosonfirst/go-writer v0.0.0-20191122214229-6e08a39e31ba h1:ES7zFkDpg
 github.com/whosonfirst/go-writer v0.0.0-20191122214229-6e08a39e31ba/go.mod h1:icuZIaxlsSAb8TnAzZFYt2G4ObYeI3vBmcNRimB92sY=
 github.com/whosonfirst/go-writer v0.0.1 h1:CwisfgdKCC0mapPmYCIk0S3j5YdXuEZjUroRBrJ2PtI=
 github.com/whosonfirst/go-writer v0.0.1/go.mod h1:icuZIaxlsSAb8TnAzZFYt2G4ObYeI3vBmcNRimB92sY=
+github.com/whosonfirst/go-writer v0.0.2 h1:ZWPMCUyQS8Khvyhz34iAsEhvRFFWo5JvraQOU/0kf5U=
+github.com/whosonfirst/go-writer v0.0.2/go.mod h1:icuZIaxlsSAb8TnAzZFYt2G4ObYeI3vBmcNRimB92sY=
 go.opencensus.io v0.15.0/go.mod h1:UffZAU+4sDEINUGP/B7UfBBkq4fqLu9zXAX7ke6CHW0=
 go.opencensus.io v0.21.0/go.mod h1:mSImk1erAIZhrmZN+AvHh14ztQfjbGwt4TtuofqLduU=
 go.opencensus.io v0.22.0 h1:C9hSCOW830chIVkdja34wa6Ky+IzWllkUinR+BtRZd4=
