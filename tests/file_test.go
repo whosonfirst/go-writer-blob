@@ -1,11 +1,14 @@
 package tests
 
+import(
+	_ "gocloud.dev/blob/fileblob"
+)
+
 import (
 	"context"
 	"fmt"
 	"github.com/whosonfirst/go-writer"
 	_ "github.com/whosonfirst/go-writer-blob"
-	_ "gocloud.dev/blob/fileblob"
 	"os"
 	"path/filepath"
 	"testing"
