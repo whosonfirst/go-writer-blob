@@ -9,11 +9,28 @@ import (
 
 func init() {
 
-	wr := NewBlobWriter()
+	ctx := context.Background()
 
 	for _, scheme := range blob.DefaultURLMux().BucketSchemes() {
-		wof_writer.Register(scheme, wr)
+
+		err := wof_writer.RegisterWriter(ctx, scheme, initializeBlobWriter)
+
+		if err != nil {
+			panic(err)
+		}
 	}
+}
+
+func initializeBlobWriter(ctx context.Context, uri string) (wof_writer.Writer, error) {
+
+	wr := NewBlobWriter()
+	err := wr.Open(ctx, uri)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return wr, nil
 }
 
 type BlobWriterOptionsKey string

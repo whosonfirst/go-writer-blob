@@ -1,6 +1,6 @@
 package tests
 
-import(
+import (
 	_ "gocloud.dev/blob/fileblob"
 )
 
