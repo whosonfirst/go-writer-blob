@@ -1,5 +1,7 @@
 # go-writer-blob
 
+[Go Cloud](https://gocloud.dev/howto/blob/) `Blob` support for the [go-writer](https://github.com/whosonfirst/go-writer) `Writer` interface. 
+
 Work in progress. This will replace [go-whosonfirst-readwrite](https://github.com/whosonfirst/go-whosonfirst-readwrite).
 
 ## Example
