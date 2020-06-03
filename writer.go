@@ -7,32 +7,6 @@ import (
 	"io"
 )
 
-func init() {
-
-	ctx := context.Background()
-
-	for _, scheme := range blob.DefaultURLMux().BucketSchemes() {
-
-		err := wof_writer.RegisterWriter(ctx, scheme, initializeBlobWriter)
-
-		if err != nil {
-			panic(err)
-		}
-	}
-}
-
-func initializeBlobWriter(ctx context.Context, uri string) (wof_writer.Writer, error) {
-
-	wr := NewBlobWriter()
-	err := wr.Open(ctx, uri)
-
-	if err != nil {
-		return nil, err
-	}
-
-	return wr, nil
-}
-
 type BlobWriterOptionsKey string
 
 type BlobWriter struct {
@@ -40,22 +14,33 @@ type BlobWriter struct {
 	bucket *blob.Bucket
 }
 
-func NewBlobWriter() wof_writer.Writer {
+func init() {
 
-	wr := BlobWriter{}
-	return &wr
+	ctx := context.Background()
+
+	for _, scheme := range blob.DefaultURLMux().BucketSchemes() {
+
+		err := wof_writer.RegisterWriter(ctx, scheme, NewBlobWriter)
+
+		if err != nil {
+			panic(err)
+		}
+	}
 }
 
-func (wr *BlobWriter) Open(ctx context.Context, uri string) error {
+func NewBlobWriter(ctx context.Context, uri string) (wof_writer.Writer, error) {
 
 	bucket, err := blob.OpenBucket(ctx, uri)
 
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	wr.bucket = bucket
-	return nil
+	wr := &BlobWriter{
+		bucket: bucket,
+	}
+
+	return wr, nil
 }
 
 func (wr *BlobWriter) Write(ctx context.Context, uri string, fh io.ReadCloser) error {
