@@ -43,7 +43,7 @@ func NewBlobWriter(ctx context.Context, uri string) (wof_writer.Writer, error) {
 	return wr, nil
 }
 
-func (wr *BlobWriter) Write(ctx context.Context, uri string, fh io.ReadCloser) error {
+func (wr *BlobWriter) Write(ctx context.Context, uri string, fh io.ReadSeeker) (int64, error) {
 
 	var wr_opts *blob.WriterOptions
 
@@ -56,14 +56,24 @@ func (wr *BlobWriter) Write(ctx context.Context, uri string, fh io.ReadCloser) e
 	wr_fh, err := wr.bucket.NewWriter(ctx, uri, wr_opts)
 
 	if err != nil {
-		return err
+		return 0, err
 	}
 
-	_, err = io.Copy(wr_fh, fh)
+	b, err := io.Copy(wr_fh, fh)
 
 	if err != nil {
-		return err
+		return b, err
 	}
 
-	return wr_fh.Close()
+	err = wr_fh.Close()
+
+	if err != nil {
+		return b, err
+	}
+
+	return b, nil
+}
+
+func (wr *BlobWriter) WriterURI(ctx context.Context, uri string) string {
+	return uri
 }

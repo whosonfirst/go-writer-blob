@@ -6,46 +6,34 @@ import (
 	"os"
 )
 
+type StdoutWriter struct {
+	Writer
+}
+
 func init() {
 
 	ctx := context.Background()
-	err := RegisterWriter(ctx, "stdout", initializeStdoutWriter)
+	err := RegisterWriter(ctx, "stdout", NewStdoutWriter)
 
 	if err != nil {
 		panic(err)
 	}
 }
 
-func initializeStdoutWriter(ctx context.Context, uri string) (Writer, error) {
+func NewStdoutWriter(ctx context.Context, uri string) (Writer, error) {
 
-	wr := NewStdoutWriter()
-	err := wr.Open(ctx, uri)
-
-	if err != nil {
-		return nil, err
-	}
-
+	wr := &StdoutWriter{}
 	return wr, nil
 }
 
-type StdoutWriter struct {
-	Writer
+func (wr *StdoutWriter) Write(ctx context.Context, uri string, fh io.ReadSeeker) (int64, error) {
+	return io.Copy(os.Stdout, fh)
 }
 
-func NewStdoutWriter() Writer {
-	wr := StdoutWriter{}
-	return &wr
-}
-
-func (wr *StdoutWriter) Open(ctx context.Context, uri string) error {
-	return nil
-}
-
-func (wr *StdoutWriter) Write(ctx context.Context, uri string, fh io.ReadCloser) error {
-	_, err := io.Copy(os.Stdout, fh)
-	return err
-}
-
-func (wr *StdoutWriter) URI(uri string) string {
+func (wr *StdoutWriter) WriterURI(ctx context.Context, uri string) string {
 	return uri
+}
+
+func (wr *StdoutWriter) Close(ctx context.Context) error {
+	return nil
 }
