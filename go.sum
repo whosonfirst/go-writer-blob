@@ -367,6 +367,8 @@ github.com/natefinch/atomic v0.0.0-20150920032501-a62ce929ffcc h1:7xGrl4tTpBQu5Z
 github.com/natefinch/atomic v0.0.0-20150920032501-a62ce929ffcc/go.mod h1:1rLVY/DWf3U6vSZgH16S7pymfrhK2lcUlXjgGglw/lY=
 github.com/natefinch/atomic v0.0.0-20200526193002-18c0533a5b09 h1:DXR0VtCesBD2ss3toN9OEeXszpQmW9dc3SvUbUfiBC0=
 github.com/natefinch/atomic v0.0.0-20200526193002-18c0533a5b09/go.mod h1:1rLVY/DWf3U6vSZgH16S7pymfrhK2lcUlXjgGglw/lY=
+github.com/natefinch/atomic v1.0.1 h1:ZPYKxkqQOx3KZ+RsbnP/YsgvxWQPGxjC0oBt2AhwV0A=
+github.com/natefinch/atomic v1.0.1/go.mod h1:N/D/ELrljoqDyT3rZrsUmtsuzvHkeB/wWjHV22AZRbM=
 github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e/go.mod h1:zD1mROLANZcx1PVRCS0qkT7pwLkGfwJo4zjcN/Tysno=
 github.com/pkg/errors v0.8.0/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
@@ -409,6 +411,8 @@ github.com/whosonfirst/go-writer v0.4.1 h1:pAZ/cwaCM129PfwYy28ggCIRfL98OkrYxNnAx
 github.com/whosonfirst/go-writer v0.4.1/go.mod h1:kFzhremCFtnkJdmviwJEPLFYKQ5+vq6ocJPxt1bHPFY=
 github.com/whosonfirst/go-writer v0.5.0 h1:+pcSBpTR6KST+HaGrIiQXCC4u2G+S5Ry8BHVgQ56jhc=
 github.com/whosonfirst/go-writer v0.5.0/go.mod h1:TDK4n9E2JPxiGlmSAdi8BQUSlpawEPMF5grpFDjfqRA=
+github.com/whosonfirst/go-writer v0.6.0 h1:rlr8xGaUrSfUC4ogDHKj6F/bEkA1inbw95FEgCHbSAs=
+github.com/whosonfirst/go-writer v0.6.0/go.mod h1:Qj0rZgdoFagSJ1xwhm60KyTgMU4DK5C6q5n8zKpgnj8=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
