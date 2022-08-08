@@ -2,9 +2,10 @@ package writer
 
 import (
 	"context"
-	wof_writer "github.com/whosonfirst/go-writer"
+	wof_writer "github.com/whosonfirst/go-writer/v2"
 	"gocloud.dev/blob"
 	"io"
+	"log"
 )
 
 type BlobWriterOptionsKey string
@@ -72,6 +73,18 @@ func (wr *BlobWriter) Write(ctx context.Context, uri string, fh io.ReadSeeker) (
 	}
 
 	return b, nil
+}
+
+func (wr *BlobWriter) Flush(ctx context.Context) error {
+	return nil
+}
+
+func (wr *BlobWriter) Close(ctx context.Context) error {
+	return nil
+}
+
+func (wr *BlobWriter) SetLogger(ctx context.Context, logger *log.Logger) error {
+	return nil
 }
 
 func (wr *BlobWriter) WriterURI(ctx context.Context, uri string) string {

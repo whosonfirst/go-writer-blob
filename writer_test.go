@@ -7,8 +7,7 @@ import (
 import (
 	"context"
 	"fmt"
-	"github.com/whosonfirst/go-writer"
-	// _ "github.com/whosonfirst/go-writer-blob"
+	"github.com/whosonfirst/go-writer/v2"
 	"os"
 	"path/filepath"
 	"testing"
