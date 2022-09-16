@@ -7,7 +7,7 @@ import (
 import (
 	"context"
 	"fmt"
-	"github.com/whosonfirst/go-writer/v2"
+	"github.com/whosonfirst/go-writer/v3"
 	"os"
 	"path/filepath"
 	"testing"

@@ -16,9 +16,6 @@ github.com/googleapis/gax-go/v2/apierror
 github.com/googleapis/gax-go/v2/apierror/internal/proto
 # github.com/natefinch/atomic v1.0.1
 github.com/natefinch/atomic
-# github.com/whosonfirst/go-writer/v2 v2.0.0
-## explicit
-github.com/whosonfirst/go-writer/v2
 # github.com/whosonfirst/go-writer/v3 v3.0.0
 ## explicit
 github.com/whosonfirst/go-writer/v3
