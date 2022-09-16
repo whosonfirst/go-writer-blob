@@ -1,4 +1,4 @@
-module github.com/whosonfirst/go-writer-blob/v2
+module github.com/whosonfirst/go-writer-blob/v3
 
 go 1.16
 
