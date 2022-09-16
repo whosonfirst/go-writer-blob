@@ -2,7 +2,7 @@ package writer
 
 import (
 	"context"
-	wof_writer "github.com/whosonfirst/go-writer/v2"
+	wof_writer "github.com/whosonfirst/go-writer/v3"
 	"gocloud.dev/blob"
 	"io"
 	"log"
