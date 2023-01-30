@@ -13,6 +13,7 @@ type BlobWriterOptionsKey string
 type BlobWriter struct {
 	wof_writer.Writer
 	bucket *blob.Bucket
+	logger *log.Logger
 }
 
 func init() {
@@ -37,8 +38,11 @@ func NewBlobWriter(ctx context.Context, uri string) (wof_writer.Writer, error) {
 		return nil, err
 	}
 
+	logger := log.New(io.Discard, "", 0)
+	
 	wr := &BlobWriter{
 		bucket: bucket,
+		logger: logger,
 	}
 
 	return wr, nil
@@ -84,6 +88,7 @@ func (wr *BlobWriter) Close(ctx context.Context) error {
 }
 
 func (wr *BlobWriter) SetLogger(ctx context.Context, logger *log.Logger) error {
+	wr.logger = logger
 	return nil
 }
 
