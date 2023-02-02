@@ -15,7 +15,7 @@ import (
 	"context"
 	"github.com/whosonfirst/go-writer"
 	_ "github.com/aaronland/go-cloud-s3blob"	
-	blob_writer "github.com/whosonfirst/go-writer-blob"
+	blob_writer "github.com/whosonfirst/go-writer-blob/v3"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"	
 	gc_blob "gocloud.dev/blob"	
