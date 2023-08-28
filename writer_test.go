@@ -7,10 +7,11 @@ import (
 import (
 	"context"
 	"fmt"
-	"github.com/whosonfirst/go-writer/v3"
 	"os"
 	"path/filepath"
 	"testing"
+
+	"github.com/whosonfirst/go-writer/v3"
 )
 
 func TestFileWriter(t *testing.T) {

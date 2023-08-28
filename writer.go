@@ -2,10 +2,13 @@ package writer
 
 import (
 	"context"
-	wof_writer "github.com/whosonfirst/go-writer/v3"
-	"gocloud.dev/blob"
+	"fmt"
 	"io"
 	"log"
+	"sync"
+
+	wof_writer "github.com/whosonfirst/go-writer/v3"
+	"gocloud.dev/blob"
 )
 
 type BlobWriterOptionsKey string
@@ -16,18 +19,50 @@ type BlobWriter struct {
 	logger *log.Logger
 }
 
+// In principle this could also be done with a sync.OnceFunc call but that will
+// require that everyone uses Go 1.21 (whose package import changes broke everything)
+// which is literally days old as I write this. So maybe a few releases after 1.21.
+//
+// Also, _not_ using a sync.OnceFunc means we can call RegisterSchemes multiple times
+// if and when multiple gomail-sender instances register themselves.
+
+var register_mu = new(sync.RWMutex)
+var register_map = map[string]bool{}
+
 func init() {
 
 	ctx := context.Background()
+	err := RegisterSchemes(ctx)
+
+	if err != nil {
+		panic(err)
+	}
+}
+
+// RegisterSchemes will explicitly register all the schemes associated with the `AccessTokensDeliveryAgent` interface.
+func RegisterSchemes(ctx context.Context) error {
+
+	register_mu.Lock()
+	defer register_mu.Unlock()
 
 	for _, scheme := range blob.DefaultURLMux().BucketSchemes() {
+
+		_, exists := register_map[scheme]
+
+		if exists {
+			continue
+		}
 
 		err := wof_writer.RegisterWriter(ctx, scheme, NewBlobWriter)
 
 		if err != nil {
-			panic(err)
+			return fmt.Errorf("Failed to register blob writer for '%s', %w", scheme, err)
 		}
+
+		register_map[scheme] = true
 	}
+
+	return nil
 }
 
 func NewBlobWriter(ctx context.Context, uri string) (wof_writer.Writer, error) {
@@ -39,7 +74,7 @@ func NewBlobWriter(ctx context.Context, uri string) (wof_writer.Writer, error) {
 	}
 
 	logger := log.New(io.Discard, "", 0)
-	
+
 	wr := &BlobWriter{
 		bucket: bucket,
 		logger: logger,
