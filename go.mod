@@ -1,9 +1,9 @@
-module github.com/whosonfirst/go-writer-blob/v3
+module github.com/whosonfirst/go-writer-blob/v4
 
-go 1.18
+go 1.21
 
 require (
-	github.com/whosonfirst/go-writer/v3 v3.1.0
+	github.com/whosonfirst/go-writer/v4 v4.0.0
 	gocloud.dev v0.34.0
 )
 

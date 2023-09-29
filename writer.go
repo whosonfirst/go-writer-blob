@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 	"io"
-	"log"
+	"log/slog"
 	"sync"
 
-	wof_writer "github.com/whosonfirst/go-writer/v3"
+	wof_writer "github.com/whosonfirst/go-writer/v4"
 	"gocloud.dev/blob"
 )
 
@@ -16,7 +16,7 @@ type BlobWriterOptionsKey string
 type BlobWriter struct {
 	wof_writer.Writer
 	bucket *blob.Bucket
-	logger *log.Logger
+	logger *slog.Logger
 }
 
 // In principle this could also be done with a sync.OnceFunc call but that will
@@ -73,7 +73,7 @@ func NewBlobWriter(ctx context.Context, uri string) (wof_writer.Writer, error) {
 		return nil, err
 	}
 
-	logger := log.New(io.Discard, "", 0)
+	logger := wof_writer.DefaultLogger()
 
 	wr := &BlobWriter{
 		bucket: bucket,
@@ -122,7 +122,7 @@ func (wr *BlobWriter) Close(ctx context.Context) error {
 	return nil
 }
 
-func (wr *BlobWriter) SetLogger(ctx context.Context, logger *log.Logger) error {
+func (wr *BlobWriter) SetLogger(ctx context.Context, logger *slog.Logger) error {
 	wr.logger = logger
 	return nil
 }
