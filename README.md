@@ -2,24 +2,23 @@
 
 [Go Cloud](https://gocloud.dev/howto/blob/) `Blob` support for the [go-writer](https://github.com/whosonfirst/go-writer) `Writer` interface. 
 
-Work in progress. This will replace [go-whosonfirst-readwrite](https://github.com/whosonfirst/go-whosonfirst-readwrite).
-
 ## Example
 
 ```
 package main
 
 import (
+	"context"
 	"bytes"
 	"errors"
-	"context"
+	"io/ioutil"
+
 	"github.com/whosonfirst/go-writer"
 	_ "github.com/aaronland/go-cloud-s3blob"	
 	blob_writer "github.com/whosonfirst/go-writer-blob/v3"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"	
 	gc_blob "gocloud.dev/blob"	
-	"io/ioutil"
 )
 
 func main() {
